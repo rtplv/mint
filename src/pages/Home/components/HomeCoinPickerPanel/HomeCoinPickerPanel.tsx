@@ -13,11 +13,7 @@ import tntIconUrl from 'cryptocurrency-icons/svg/color/tnt.svg'
 
 // const dummyCurrenciesList = ['USDT', 'BTC', 'ETH', 'USDC', 'XRP', 'XZC', 'SUMO', 'SUB', 'STX', 'TNT']
 
-export interface HomeCoinPickerPanelProps {
-  className: string
-}
-
-export function HomeCoinPickerPanel({ className }: HomeCoinPickerPanelProps) {
+function HomeCoinPickerPanel({ className }) {
   // TODO: replace to dynamic import
   const iconUrls = [
     usdtIconUrl,
@@ -48,3 +44,6 @@ export function HomeCoinPickerPanel({ className }: HomeCoinPickerPanelProps) {
     </Flex>
   )
 }
+
+
+export default HomeCoinPickerPanel
