@@ -1,29 +1,22 @@
 import style from './HomeHeader.module.css'
-import logoUrl from '@/assets/logo.png'
-import { Flex, Text } from '@mantine/core'
+import LogoUrl from '@/assets/logo.png'
+import { Flex } from "@mantine/core";
 
 function HomeHeader() {
   return (
-    <header className={style.root}>
+    <header>
       <Flex className={style.logo}
-        align="center"
-        gap=".75rem"
-        direction="row">
+            align="center"
+            gap="1rem"
+            direction="row">
         <img className={style.logo_img}
-          src={logoUrl}
-          alt="App logo"/>
-        <Text
-          className={style.logo_title}
-          size="2rem"
-          fw={600}
-          variant="gradient"
-          gradient={{ from: 'teal', to: 'lime', deg: 90 }}
-        >
-          Mint
-        </Text>
+             src={LogoUrl}
+             width="4rem"
+             alt="App logo"/>
+        <h1 className={style.logo_title}>Mint</h1>
       </Flex>
     </header>
-  )
+  );
 }
 
-export default HomeHeader
+export default HomeHeader;

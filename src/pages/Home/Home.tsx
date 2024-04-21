@@ -1,12 +1,9 @@
-import { HomeHeader } from './components/HomeHeader'
-import { HomeCoinPickerPanel } from './components/HomeCoinPickerPanel'
-import style from './Home.module.css'
+import { HomeHeader } from "./components/HomeHeader";
 
 function Home() {
   return (
     <>
       <HomeHeader/>
-      <HomeCoinPickerPanel className={style.picker_panel}/>
     </>
   )
 }
