@@ -1,0 +1,16 @@
+:root {
+  padding: 1rem;
+}
+
+.logo {
+  height: 4rem;
+}
+
+.logo_img {
+  width: 4rem;
+}
+
+.logo_title {
+  font-size: 2.5rem;
+  font-weight: 500;
+}

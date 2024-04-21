@@ -1,9 +1,9 @@
-import './Home.css'
+import { HomeHeader } from "./components/HomeHeader";
 
 function Home() {
   return (
     <>
-     <div>hello</div>
+      <HomeHeader/>
     </>
   )
 }
