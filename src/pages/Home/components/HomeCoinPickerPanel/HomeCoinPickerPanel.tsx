@@ -1,4 +1,4 @@
-import { Flex, ScrollArea, Title, Input, Loader } from '@mantine/core'
+import { Flex, ScrollArea, Title, Text, Input, Loader } from '@mantine/core'
 import style from './HomeCoinPickerPanel.module.css'
 import { Suspense } from 'react'
 import { CoinIcon } from '@/components/ui'
@@ -21,14 +21,20 @@ export function HomeCoinPickerPanel({ className }: HomeCoinPickerPanelProps) {
         <Title order={3}>Pick coin to compare:</Title>
         <Input placeholder="Filter by coin name"/>
       </Flex>
-      <ScrollArea>
-        <Flex h="7rem"
-          className={style.currency_picker}
-          align="center"
-          gap="1rem">
+      <ScrollArea scrollbars="x" offsetScrollbars="x">
+        <Flex align="center" gap="1rem">
           <Suspense fallback={<Loader color={PRIMARY_COLOR} />}>
             {dummyCurrenciesList.map(coinName =>
-              <CoinIcon name={coinName} key={coinName}/>
+              <Flex key={coinName}
+                direction="column"
+                justify="center"
+                align="center"
+                gap=".5rem">
+                <CoinIcon name={coinName}
+                  imageProps={{ w: '5rem' }}/>
+
+                <Text c="dimmed">{coinName}</Text>
+              </Flex>
             )}
           </Suspense>
         </Flex>
