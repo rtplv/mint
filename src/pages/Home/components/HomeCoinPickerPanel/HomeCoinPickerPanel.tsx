@@ -31,7 +31,7 @@ export function HomeCoinPickerPanel({ className }: HomeCoinPickerPanelProps) {
                 align="center"
                 gap=".5rem">
                 <CoinIcon name={coinName}
-                  imageProps={{ w: '5rem' }}/>
+                  imageProps={{ w: '4rem' }}/>
 
                 <Text c="dimmed">{coinName}</Text>
               </Flex>
