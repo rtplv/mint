@@ -2,6 +2,7 @@
   padding: 1rem;
 }
 
-.currency_icon {
-  width: 7rem;
+.currency_picker {
+  padding-bottom: 1rem;
+  cursor: grab;
 }
