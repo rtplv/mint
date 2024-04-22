@@ -3,8 +3,8 @@ import { CoinIcon } from '@/components/ui'
 
 export function HomeCoinComparator() {
   return (
-    <Grid w="50%" m="7rem auto 0 auto">
-      <Grid.Col span={4}>
+    <Grid>
+      <Grid.Col span={6}>
         <Flex direction="column"
           justify="center"
           align="center"
@@ -18,13 +18,8 @@ export function HomeCoinComparator() {
           </Flex>
         </Flex>
       </Grid.Col>
-      <Grid.Col span={4}>
-        <Flex justify="center" align="center" h="100%">
-          {/*TODO: Change to icon*/}
-          <Text size="5rem">{'=>'}</Text>
-        </Flex>
-      </Grid.Col>
-      <Grid.Col span={4}>
+      {/*TODO: Add decoration icon with arrow */}
+      <Grid.Col span={6}>
         <Flex direction="column"
           justify="center"
           align="center"
