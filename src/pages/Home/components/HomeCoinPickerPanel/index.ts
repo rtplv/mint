@@ -1,2 +1,1 @@
-export type { HomeCoinPickerPanelProps } from './HomeCoinPickerPanel.tsx'
-export { HomeCoinPickerPanel } from './HomeCoinPickerPanel.tsx'
+export { default as HomeCoinPickerPanel } from './HomeCoinPickerPanel.tsx'
