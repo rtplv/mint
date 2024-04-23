@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 
-export const useApi = <T, >(baseUrl: string) => {
+export const useApi = <T, >(baseUrl: string, baseParams: Record<string, string>) => {
   const [ data, setData ] = useState<T | null>(null)
   const [ isLoading, setIsLoading ] = useState(false)
   const [ error, setError ] = useState<Error | null>(null)
@@ -10,7 +10,7 @@ export const useApi = <T, >(baseUrl: string) => {
     params?: Record<string, string>) => {
     const queryParams = '?' + new URLSearchParams({
       ...(params ?? {}),
-      'x_cg_api_key': import.meta.env.VITE_COINGECKO_API_KEY
+      ...(baseParams ?? {}),
     })
     const url = `${baseUrl}${endpointPath}${queryParams}`
 
@@ -28,7 +28,7 @@ export const useApi = <T, >(baseUrl: string) => {
     }
 
     setIsLoading(false)
-  }, [data, isLoading, error])
+  }, [])
 
   return { data, error, isLoading, handleRequest }
 }

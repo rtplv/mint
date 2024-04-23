@@ -1,16 +1,27 @@
 import { Flex, ScrollArea, Title, Text, Input, Loader } from '@mantine/core'
+import { Suspense, useEffect } from 'react'
 import style from './HomeCoinPickerPanel.module.css'
-import { Suspense } from 'react'
 import { CoinIcon } from '@/components/ui'
 import { PRIMARY_COLOR } from '@/constants'
-
-const dummyCurrenciesList = ['USDT', 'BTC', 'ETH', 'USDC', 'XRP', 'XZC', 'SUMO', 'SUB', 'STX', 'TNT']
+import { useCoinGeckoApi } from '@/clients/useCoinGeckoApi.tsx'
 
 export interface HomeCoinPickerPanelProps {
   className: string
 }
 
 export function HomeCoinPickerPanel({ className }: HomeCoinPickerPanelProps) {
+  // TODO: pass to context
+  const { handleRequest, data: currenciesList, isLoading} = useCoinGeckoApi<{
+    id: string
+    name: string
+    symbol: string
+    image: string
+  }[]>()
+
+  useEffect(() => {
+    handleRequest('/coins/markets', 'GET', { vs_currency: 'usd' })
+  }, [])
+
   return (
     <Flex className={`${style.root} ${className}`}
       justify="center"
@@ -23,20 +34,24 @@ export function HomeCoinPickerPanel({ className }: HomeCoinPickerPanelProps) {
       </Flex>
       <ScrollArea scrollbars="x" offsetScrollbars="x">
         <Flex align="center" gap="1rem">
-          <Suspense fallback={<Loader color={PRIMARY_COLOR} />}>
-            {dummyCurrenciesList.map(coinName =>
-              <Flex key={coinName}
-                direction="column"
-                justify="center"
-                align="center"
-                gap=".5rem">
-                <CoinIcon name={coinName}
-                  imageProps={{ w: '4rem' }}/>
-
-                <Text c="dimmed">{coinName}</Text>
-              </Flex>
-            )}
-          </Suspense>
+          {isLoading ? (
+            <Loader color={PRIMARY_COLOR}/>
+          ) : (
+            <Suspense fallback={<Loader color={PRIMARY_COLOR} />}>
+              {currenciesList?.map(coin =>
+                <Flex key={coin.id}
+                  direction="column"
+                  justify="center"
+                  align="center"
+                  gap=".5rem">
+                  <CoinIcon name={coin.symbol}
+                    placeholderUrl={coin.image}
+                    imageProps={{ w: '4rem', radius: 'xl' }}/>
+                  <Text c="dimmed">{coin.name.length < 8 ? coin.name : coin.symbol.toUpperCase() }</Text>
+                </Flex>
+              )}
+            </Suspense>
+          )}
         </Flex>
       </ScrollArea>
     </Flex>
